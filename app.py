@@ -259,19 +259,19 @@ def check_claim(claim: str):
             "supporting": [],
             "contradicting": [],
             "sources": [],
-            "ask_for_source": False
+            "ask_for_source": True
         })
     result = run_agent(claim.strip())
     return make_result_html(result)
 
 
 # ── Gradio UI ───────────────────────────────────────────────────────────────
-with gr.Blocks(css=CSS, title="VeritasAI — Fact Checker") as demo:
+with gr.Blocks(css=CSS, title="Veritas AI — Your Pocket Friendly Fact Checker") as demo:
 
     gr.HTML("""
     <div class="header-block">
-        <h1>VERIT<span>A</span>S<span style="color:#1e40af;">AI</span></h1>
-        <div class="header-sub">INTELLIGENT FACT-CHECKING AGENT // POWERED BY GROQ + TAVILY</div>
+        <h1>VERITAS AI</h1>
+        <div class="header-sub">INTELLIGENT FACT-CHECKING AGENT // A PROJECT BY TEAM TRANSFORMERS
     </div>
     """)
 
@@ -302,10 +302,10 @@ with gr.Blocks(css=CSS, title="VeritasAI — Fact Checker") as demo:
         label="TRY AN EXAMPLE",
     )
 
-    gr.HTML('<div class="footer-note">VeritasAI searches the web in real-time. Results are AI-generated and should not be treated as legal or journalistic fact.</div>')
+    gr.HTML('<div class="footer-note">Veritas AI searches the web in real-time. Results are AI-generated and should not be treated as legal or journalistic fact.</div>')
 
     check_btn.click(fn=check_claim, inputs=claim_input, outputs=result_output)
     claim_input.submit(fn=check_claim, inputs=claim_input, outputs=result_output)
 
 if __name__ == "__main__":
-    demo.launch(share=False)
+    demo.launch(share=True)
